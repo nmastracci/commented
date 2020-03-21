@@ -2,19 +2,19 @@
   <div id="app">
     <h1 id="heading">Commented.</h1>
     <div class="container">
-      <Comment msg="Welcome to Your Vue.js App" />
+      <CommentContainer />
     </div>
   </div>
 </template>
 
 <script>
-import Comment from './components/Comment.vue';
+import CommentContainer from './components/CommentContainer.vue';
 
 export default {
   name: 'App',
   components: {
-    Comment,
-  },
+    CommentContainer
+  }
 };
 </script>
 

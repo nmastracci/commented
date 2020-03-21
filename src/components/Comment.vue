@@ -9,26 +9,26 @@
     </div>
     <div>
       <div class="card-title">
-        <h4 class="">{{ comments.username }}</h4>
-        <h4 class=" tag">{{ comments.role }}</h4>
+        <h4 class="">{{ username }}</h4>
+        <h4 class=" tag">{{ role }}</h4>
         <i>&#183;</i>
         <h4 :class="[{ 'text-light': isHovering }, 'secondary-text']">
-          {{ converDate(comments.createdAt) }}
+          {{ converDate(createdAt) }}
         </h4>
       </div>
-      <p>{{ comments.body }}</p>
+      <p>{{ body }}</p>
       <div class="interactions">
         <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']"
           >Reply</span
         >
         <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']"
-          >{{ comments.replies }} Replies</span
+          >{{ replies }} Replies</span
         >
         <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']"
-          >^ {{ comments.upvotes }}</span
+          >^ {{ upvotes }}</span
         >
         <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']"
-          >^ {{ comments.downvotes }}</span
+          >^ {{ downvotes }}</span
         >
       </div>
     </div>
@@ -38,20 +38,18 @@
 <script>
 export default {
   name: 'Comment',
+  props: [
+    'username',
+    'role',
+    'body',
+    'replies',
+    'upvotes',
+    'downvotes',
+    'createdAt'
+  ],
   data: () => {
     return {
-      isHovering: true,
-      comments: {
-        id: 0,
-        username: 'Brad',
-        role: 'Author',
-        body:
-          'So what the German automaker is likely to focus on today is the bigger picture. This will be the first time we see the Taycan free from any prototype bodywork',
-        replies: 21,
-        upvotes: 123,
-        downvotes: 0,
-        createdAt: 'Sat Mar 21 2020 16:40:02 GMT-0400'
-      }
+      isHovering: true
     };
   },
   methods: {
@@ -59,7 +57,7 @@ export default {
       const commentDate = new Date(createdAt);
 
       const timeDifferenceInMinutes = Math.floor(
-        (Date.now() - commentDate) / 1000 / 60
+        ((Date.now() - commentDate) / 1000 )/ 60
       );
       if (timeDifferenceInMinutes < 60) {
         return `${timeDifferenceInMinutes} minutes ago`;
