@@ -9,30 +9,26 @@
     </div>
     <div>
       <div class="card-title">
-        <h4 class="">Brad</h4>
-        <h4 class=" tag">Author</h4>
+        <h4 class="">{{ comments.username }}</h4>
+        <h4 class=" tag">{{ comments.role }}</h4>
         <i>&#183;</i>
         <h4 :class="[{ 'text-light': isHovering }, 'secondary-text']">
-          2 minutes ago
+          {{ converDate(comments.createdAt) }}
         </h4>
       </div>
-      <p>
-        So what the German automaker is likey to focus on today is the bigger
-        picture. Thishi will be the first time we see the Taycan free from any
-        prototype bodywork.
-      </p>
+      <p>{{ comments.body }}</p>
       <div class="interactions">
         <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']"
           >Reply</span
         >
         <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']"
-          >21 Replies</span
+          >{{ comments.replies }} Replies</span
         >
         <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']"
-          >^ 123</span
+          >^ {{ comments.upvotes }}</span
         >
         <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']"
-          >^ 0</span
+          >^ {{ comments.downvotes }}</span
         >
       </div>
     </div>
@@ -45,12 +41,41 @@ export default {
   data: () => {
     return {
       isHovering: true,
+      comments: {
+        id: 0,
+        username: 'Brad',
+        role: 'Author',
+        body:
+          'So what the German automaker is likely to focus on today is the bigger picture. This will be the first time we see the Taycan free from any prototype bodywork',
+        replies: 21,
+        upvotes: 123,
+        downvotes: 0,
+        createdAt: 'Sat Mar 21 2020 16:40:02 GMT-0400'
+      }
     };
   },
+  methods: {
+    converDate: function(createdAt) {
+      const commentDate = new Date(createdAt);
+
+      const timeDifferenceInMinutes = Math.floor(
+        (Date.now() - commentDate) / 1000 / 60
+      );
+      if (timeDifferenceInMinutes < 60) {
+        return `${timeDifferenceInMinutes} minutes ago`;
+      }
+      if (timeDifferenceInMinutes > 60) {
+        if (timeDifferenceInMinutes / 60 > 24) {
+          return 'more than a day ago';
+        }
+        return `${Math.floor(timeDifferenceInMinutes / 60)} hours ago`;
+      }
+      return createdAt;
+    }
+  }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .comment {
   border-top: 0.0625rem solid #e9ecef;
