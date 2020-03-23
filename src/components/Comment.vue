@@ -5,7 +5,9 @@
     class="comment"
   >
     <div class="user">
-      <div class="circle"></div>
+      <div class="circle">
+        <img v-if="hasPhoto" :src="'/img/'+photo" alt="profile picture of the user">
+      </div>
     </div>
     <div>
       <div class="card-title">
@@ -39,18 +41,42 @@
 export default {
   name: 'Comment',
   props: [
-    'username',
-    'role',
-    'body',
-    'replies',
-    'upvotes',
-    'downvotes',
-    'createdAt'
+    'usernameProp',
+    'roleProp',
+    'photoProp',
+    'bodyProp',
+    'repliesProp',
+    'upvotesProp',
+    'downvotesProp',
+    'createdAtProp'
   ],
   data: () => {
     return {
-      isHovering: true
+      isHovering: true,
+      username: '',
+      role: '',
+      photo: '',
+      body: '',
+      replies: 0,
+      upvotes: 0,
+      downvotes: 0,
+      createdAt: ''
     };
+  },
+  created() {
+    this.username = this.usernameProp
+    this.role = this.roleProp
+    this.photo = this.photoProp
+    this.body = this.bodyProp
+    this.replies = this.repliesProp
+    this.upvotes = this.upvotesProp
+    this.downvotes = this.downvotesProp
+    this.createdAt = this.createdAtProp
+  },
+  computed: {
+    hasPhoto() {
+      return this.photo
+    }
   },
   methods: {
     converDate: function(createdAt) {
@@ -125,6 +151,12 @@ export default {
   background: #d9a967;
   // #ff7f00
   border-radius: 50%;
+
+  img {
+    @extend .circle;
+    background:none;
+    object-fit: cover;
+  }
 }
 .card-title {
   @extend .interactions;

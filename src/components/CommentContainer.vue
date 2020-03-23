@@ -14,13 +14,14 @@
     <Comment
       v-for="comment in comments"
       :key="comment.id"
-      :username="comment.username"
-      :role="comment.role"
-      :body="comment.body"
-      :replies="comment.replies"
-      :upvotes="comment.upvotes"
-      :downvotes="comment.downvotes"
-      :created-at="comment.createdAt"
+      :username-prop="comment.username"
+      :role-prop="comment.role"
+      :photo-prop="comment.photo"
+      :body-prop="comment.body"
+      :replies-prop-prop="comment.replies"
+      :upvotes-prop="comment.upvotes"
+      :downvotes-prop="comment.downvotes"
+      :created-at-prop="comment.createdAt"
     />
   </div>
 </template>
@@ -40,6 +41,7 @@ export default {
         id: 0,
         username: '',
         role: 'Author',
+        photo: false,
         body: '',
         replies: 0,
         upvotes: 0,
@@ -51,6 +53,7 @@ export default {
           id: 0,
           username: 'Jesse',
           role: 'Author',
+          photo: 'woman.webp',
           body:
             'We could continue talking about the downfall of Taycan but I think there has already been too much chatter around that topic',
           replies: 124,
@@ -62,6 +65,7 @@ export default {
           id: 1,
           username: 'Brad',
           role: 'Author',
+          photo: 'man.webp',
           body:
             'So what the German automaker is likely to focus on today is the bigger picture. This will be the first time we see the Taycan free from any prototype bodywork',
           replies: 21,

@@ -8,6 +8,7 @@ describe('Comment', () => {
     propsData: {
       username: 'Brad',
       role: 'Author',
+      photo: 'man.webp',
       body:
         'So what the German automaker is likely to focus on today is the bigger picture. This will be the first time we see the Taycan free from any prototype bodywork',
       replies: 21,
