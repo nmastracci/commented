@@ -14,8 +14,8 @@
         <h4>{{ username }}</h4>
         <h4 class="role">{{ role }}</h4>
         <i>&#183;</i>
-        <h4 :class="[{ 'text-light': isHovering }, 'secondary-text']">
-          {{ converDate(createdAt) }}
+        <h4 id="createdAt" :class="[{ 'text-light': isHovering }, 'secondary-text']">
+          {{ converDateToRelativeTime(createdAt) }}
         </h4>
       </div>
       <p>{{ body }}</p>
@@ -97,24 +97,22 @@ export default {
     this.createdAt = this.createdAtProp;
   },
   methods: {
-    converDate: function(createdAt) {
-      const commentDate = new Date(createdAt);
-
+    converDateToRelativeTime: function(createdAt) {
       const timeDifferenceInMinutes = Math.floor(
-        (Date.now() - commentDate) / 1000 / 60
+        (Date.now() - createdAt) / 1000 / 60
       );
-      if (timeDifferenceInMinutes < 60) {
-        return `${timeDifferenceInMinutes} minutes ago`;
-      }
+
       if (timeDifferenceInMinutes > 60) {
         const timeDifferenceInHours = Math.floor(timeDifferenceInMinutes / 60);
+
         if (timeDifferenceInHours > 24) {
           const timedifferenceInDays = Math.floor(timeDifferenceInHours/24);
-          return timeDifferenceInHours > 24 ? 'Yesterday' : `${timedifferenceInDays} days ago`;
+
+          return timedifferenceInDays === 1 ? 'Yesterday' : `${timedifferenceInDays} days ago`;
         }
-        return `${Math.floor(timeDifferenceInMinutes / 60)} hours ago`;
+        return timeDifferenceInHours > 1 ? `${timeDifferenceInHours} hours ago` : 'An hour ago';
       }
-      return createdAt;
+      return timeDifferenceInMinutes > 1 ? `${timeDifferenceInMinutes} minutes ago` : 'Just now';
     },
     hasPhoto() {
       return this.photo;

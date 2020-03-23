@@ -71,7 +71,7 @@ export default {
           replies: 21,
           upvotes: 123,
           downvotes: 0,
-          createdAt: new Date('Sat Mar 21 2020 16:40:02 GMT-0400')
+          createdAt: new Date('Fri Mar 20 2020 16:40:02 GMT-0400')
         }
       ]
     };
