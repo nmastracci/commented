@@ -4,9 +4,17 @@
       <div class="card-body">
         <div class="card-body-title">
           <h4>Name:</h4>
-          <input placeholder="Enter Your name" type="text" v-model="currentUser.username" />
+          <input
+            placeholder="Enter Your name"
+            type="text"
+            v-model="currentUser.username"
+          />
         </div>
-        <textarea placeholder="Have a comment?" type="text" v-model="currentUser.body"></textarea>
+        <textarea
+          placeholder="Have a comment?"
+          type="text"
+          v-model="currentUser.body"
+        ></textarea>
         <button v-on:click="updateComments">Post Comment</button>
       </div>
     </div>
@@ -122,7 +130,7 @@ export default {
     border: none;
     padding: 0 0.75rem;
     font-size: 1rem;
-    font-family: "Avenir";
+    font-family: 'Avenir';
   }
 }
 textarea {
@@ -132,7 +140,7 @@ textarea {
   padding: 0.75rem;
   align-self: stretch;
   font-size: 1rem;
-  font-family: "Avenir";
+  font-family: 'Avenir';
   margin: 0 0 1.5rem 0;
 }
 button {

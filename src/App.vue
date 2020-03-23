@@ -28,8 +28,12 @@ h4 {
   margin-top: 0;
   margin-bottom: 0;
 }
-div, input, textarea {
-  &:hover, &:focus, &:active {
+div,
+input,
+textarea {
+  &:hover,
+  &:focus,
+  &:active {
     outline: none;
   }
 }

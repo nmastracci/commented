@@ -5,7 +5,12 @@
     class="comment"
   >
     <div class="user">
-      <img v-if="hasPhoto" class="photo" :src="'/img/'+photo" alt="profile picture of the user">
+      <img
+        v-if="hasPhoto"
+        class="photo"
+        :src="'/img/' + photo"
+        alt="profile picture of the user"
+      />
       <div v-else class="circle"></div>
     </div>
     <div>
@@ -13,24 +18,41 @@
         <h4>{{ username }}</h4>
         <h4 class="role">{{ role }}</h4>
         <i>&#183;</i>
-        <h4 id="createdAt" :class="[{ 'text-light': isHovering }, 'secondary-text']">
+        <h4
+          id="createdAt"
+          :class="[{ 'text-light': isHovering }, 'secondary-text']"
+        >
           {{ converDateToRelativeTime(createdAt) }}
         </h4>
       </div>
       <p>{{ body }}</p>
       <div class="interactions">
-        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']">Reply</span>
-        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']">{{ replies }} Replies</span>
+        <span
+          :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
+        >
+          Reply
+        </span>
+        <span
+          :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
+        >
+          {{ replies }} Replies
+        </span>
         <span
           id="upvotes"
-          :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
+          :class="[{ 'text-light': isHovering },'mr','secondary-text','pointer']"
           @click="upvotes += 1"
-        ><span class="chevron"></span>{{ upvotes }}</span>
+        >
+          <span class="chevron"></span>
+          {{ upvotes }}
+        </span>
         <span
           id="downvotes"
           :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
           @click="downvotes += 1"
-        ><span class="chevron down"></span>{{ downvotes }}</span>
+        >
+          <span class="chevron down"></span>
+          {{ downvotes }}
+        </span>
       </div>
     </div>
   </div>
@@ -40,39 +62,39 @@
 export default {
   name: 'Comment',
   props: {
-      usernameProp: {
-        type: String,
-        required: true
-      },
-      roleProp: {
-        type: String,
-        required: true
-      },
-      photoProp: {
-        type: String,
-        required: true
-      },
-      bodyProp: {
-        type: String,
-        required: true
-      },
-      repliesProp: {
-        type: Number,
-        required: true
-      },
-      upvotesProp: {
-        type: Number,
-        required: true
-      },
-      downvotesProp: {
-        type: Number,
-        required: true
-      },
-      createdAtProp: {
-        type: Date,
-        required: true
-      }
+    usernameProp: {
+      type: String,
+      required: true
     },
+    roleProp: {
+      type: String,
+      required: true
+    },
+    photoProp: {
+      type: String,
+      required: true
+    },
+    bodyProp: {
+      type: String,
+      required: true
+    },
+    repliesProp: {
+      type: Number,
+      required: true
+    },
+    upvotesProp: {
+      type: Number,
+      required: true
+    },
+    downvotesProp: {
+      type: Number,
+      required: true
+    },
+    createdAtProp: {
+      type: Date,
+      required: true
+    }
+  },
   data: () => {
     return {
       isHovering: true,
@@ -106,13 +128,19 @@ export default {
         const timeDifferenceInHours = Math.floor(timeDifferenceInMinutes / 60);
 
         if (timeDifferenceInHours > 24) {
-          const timedifferenceInDays = Math.floor(timeDifferenceInHours/24);
+          const timedifferenceInDays = Math.floor(timeDifferenceInHours / 24);
 
-          return timedifferenceInDays === 1 ? 'Yesterday' : `${timedifferenceInDays} days ago`;
+          return timedifferenceInDays === 1
+            ? 'Yesterday'
+            : `${timedifferenceInDays} days ago`;
         }
-        return timeDifferenceInHours > 1 ? `${timeDifferenceInHours} hours ago` : 'An hour ago';
+        return timeDifferenceInHours > 1
+          ? `${timeDifferenceInHours} hours ago`
+          : 'An hour ago';
       }
-      return timeDifferenceInMinutes > 1 ? `${timeDifferenceInMinutes} minutes ago` : 'Just now';
+      return timeDifferenceInMinutes > 1
+        ? `${timeDifferenceInMinutes} minutes ago`
+        : 'Just now';
     },
     hasPhoto() {
       return this.photo;
@@ -173,15 +201,14 @@ export default {
   width: 3rem;
   height: 3rem;
   background: #d9a967;
-  // #ff7f00
   border-radius: 50%;
   margin-top: 0.5rem;
 }
 .photo {
-    @extend .circle;
-    background:none;
-    object-fit: cover;
-  }
+  @extend .circle;
+  background: none;
+  object-fit: cover;
+}
 .card-title {
   @extend .interactions;
   &:first-child {
@@ -211,8 +238,7 @@ export default {
   margin-right: 0.25rem;
 }
 .down:before {
-	transform: rotate(135deg);
+  transform: rotate(135deg);
   vertical-align: top;
 }
-
 </style>

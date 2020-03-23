@@ -51,15 +51,23 @@ describe('Comment.vue', () => {
       }
     });
 
-    expect(component.element.querySelector('#upvotes').classList.contains('text-light')).toBe(true);
+    expect(
+      component.element
+        .querySelector('#upvotes')
+        .classList.contains('text-light')
+    ).toBe(true);
 
     component.trigger('mouseover');
     await component.vm.$nextTick();
 
-    expect(component.element.querySelector('#upvotes').classList.contains('text-light')).toBe(false);
+    expect(
+      component.element
+        .querySelector('#upvotes')
+        .classList.contains('text-light')
+    ).toBe(false);
   });
 
-  it('clicking upvotes or downvotes should increment the count', async () => {
+  it('clicking upvotes should increment its count', async () => {
     component = shallowMount(Comment, {
       propsData: {
         usernameProp: 'Brad',
@@ -73,14 +81,36 @@ describe('Comment.vue', () => {
         createdAtProp: new Date('Sat Mar 21 2020 16:40:02 GMT-0400')
       }
     });
-    const upvotes = component.element.querySelector('#upvotes');
 
-    expect(upvotes.textContent).toEqual('123');
+    expect(component.element.querySelector('#upvotes').textContent.trim()).toEqual('123');
 
     component.find('#upvotes').trigger('click');
     await component.vm.$nextTick();
 
-    expect(upvotes.textContent).toEqual('124');
+    expect(component.element.querySelector('#upvotes').textContent.trim()).toEqual('124');
+  });
+
+  it('clicking downvotes should increment its count', async () => {
+    component = shallowMount(Comment, {
+      propsData: {
+        usernameProp: 'Brad',
+        roleProp: 'Author',
+        photoProp: 'man.webp',
+        bodyProp:
+          'So what the German automaker is likely to focus on today is the bigger picture. This will be the first time we see the Taycan free from any prototype bodywork',
+        repliesProp: 21,
+        upvotesProp: 123,
+        downvotesProp: 0,
+        createdAtProp: new Date('Sat Mar 21 2020 16:40:02 GMT-0400')
+      }
+    });
+
+    expect(component.element.querySelector('#downvotes').textContent.trim()).toEqual('0');
+
+    component.find('#downvotes').trigger('click');
+    await component.vm.$nextTick();
+
+    expect(component.element.querySelector('#downvotes').textContent.trim()).toEqual('1');
   });
 
   describe('Date/time calculations', () => {
@@ -101,10 +131,8 @@ describe('Comment.vue', () => {
       mockedNow = () => new Date(Date.now());
       jest
         .spyOn(global.Date, 'now')
-        .mockImplementation(() =>
-          new Date(1584980968567)
-        );
-    })
+        .mockImplementation(() => new Date(1584980968567));
+    });
 
     it('returns "yesterday" if comment was made 1 day ago', () => {
       component = shallowMount(Comment, {
@@ -133,7 +161,6 @@ describe('Comment.vue', () => {
     });
 
     it('returns number of minutes if commented less than an hour ago', () => {
-
       component = shallowMount(Comment, {
         propsData: {
           ...PROPS,
@@ -147,7 +174,6 @@ describe('Comment.vue', () => {
     });
 
     it('returns "just now" if commented less than 2 minutes ago', () => {
-
       component = shallowMount(Comment, {
         propsData: {
           ...PROPS,
@@ -185,7 +211,5 @@ describe('Comment.vue', () => {
       expect(mockedNow()).toEqual(new Date(1584980968567));
       expect(createdAt.textContent).toContain('An hour ago');
     });
-  })
-
-
+  });
 });
