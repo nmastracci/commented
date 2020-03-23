@@ -18,13 +18,15 @@
       </div>
       <p>{{ body }}</p>
       <div class="interactions">
-        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']">Reply</span>
+        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']">Reply</span>
         <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']">{{ replies }} Replies</span>
         <span
+          id="upvotes"
           :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
           @click="upvotes += 1"
         >^ {{ upvotes }}</span>
         <span
+          id="downvotes"
           :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
           @click="downvotes += 1"
         >^ {{ downvotes }}</span>
