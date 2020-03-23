@@ -20,8 +20,14 @@
       <div class="interactions">
         <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']">Reply</span>
         <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']">{{ replies }} Replies</span>
-        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']">^ {{ upvotes }}</span>
-        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']">^ {{ downvotes }}</span>
+        <span
+          :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
+          @click="upvotes += 1"
+        >^ {{ upvotes }}</span>
+        <span
+          :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
+          @click="downvotes += 1"
+        >^ {{ downvotes }}</span>
       </div>
     </div>
   </div>
@@ -128,5 +134,8 @@ export default {
     font-size: 1.5rem;
     color: #e9ecef;
   }
+}
+.pointer {
+  cursor: pointer;
 }
 </style>
