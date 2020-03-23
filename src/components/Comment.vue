@@ -21,7 +21,7 @@
       <p>{{ body }}</p>
       <div class="interactions">
         <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']">Reply</span>
-        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']">{{ replies }} Replies</span>
+        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']">{{ replies }} Replies</span>
         <span
           id="upvotes"
           :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
@@ -92,6 +92,7 @@ export default {
     this.role = this.roleProp;
     this.photo = this.photoProp;
     this.body = this.bodyProp;
+    this.replies = this.repliesProp;
     this.upvotes = this.upvotesProp;
     this.downvotes = this.downvotesProp;
     this.createdAt = this.createdAtProp;
@@ -133,6 +134,9 @@ export default {
   &:hover {
     color: #212529;
   }
+  p {
+    margin: 0.25rem 0 0.75rem;
+  }
 }
 .user {
   min-width: 3rem;
@@ -163,7 +167,7 @@ export default {
   border-radius: 2rem;
   padding: 0.125rem 0.5rem;
   color: #fff;
-  font-size: 0.75rem;
+  font-size: 0.5rem;
   text-transform: uppercase;
 }
 .circle {
@@ -181,6 +185,9 @@ export default {
 }
 .card-title {
   @extend .interactions;
+  &:first-child {
+    font-size: 1.1rem;
+  }
   h4 {
     margin-right: 0.5rem;
   }
