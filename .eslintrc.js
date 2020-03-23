@@ -11,6 +11,7 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'comma-dangle': ['error', 'never'],
-    quotes: [2, 'single', { avoidEscape: true }]
+    "prettier/prettier": ["error", {"singleQuote": true, "parser": "flow"}],
+    quotes: ['error', 'single', { avoidEscape: true, "allowTemplateLiterals": true }]
   }
 };
