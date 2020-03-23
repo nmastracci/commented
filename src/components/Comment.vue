@@ -153,7 +153,7 @@ export default {
   }
 }
 .text-light {
-  color: #e9ecef;
+  color: #adb5bd;
 }
 .mr {
   margin-right: 1.25rem;
