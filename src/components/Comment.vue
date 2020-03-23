@@ -189,10 +189,10 @@ export default {
     font-size: 1.1rem;
   }
   h4 {
-    margin-right: 0.5rem;
+    margin-right: 0.25rem;
   }
   i {
-    margin-right: 0.5rem;
+    margin-right: 0.25rem;
     font-size: 1.5rem;
     color: #e9ecef;
   }
