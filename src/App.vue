@@ -27,6 +27,11 @@ body {
 h4 {
   margin: 0;
 }
+div, input, textarea {
+  &:hover, &:focus, &:active {
+    outline: none;
+  }
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -43,12 +48,13 @@ h4 {
 }
 .container {
   background-color: #fff;
-  box-shadow: 0px 4px 8px 0px rgba(73, 80, 87, 0.25);
-  // box-shadow: 0px 4px 8px 0px rgb(199, 175, 163);
-
   width: 40rem;
   margin: 0 auto;
   border-radius: 0.25rem;
   padding: 0.5rem;
+  border: 0.25rem solid #e2e2e2;
+  border-top: 0.25rem solid #fff;
+  border-left: 0.25rem solid #f1f1f1;
+  border-bottom: 0.25rem solid #b9b9b9;
 }
 </style>
