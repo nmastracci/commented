@@ -9,8 +9,8 @@
     </div>
     <div>
       <div class="card-title">
-        <h4 class="">{{ username }}</h4>
-        <h4 class=" tag">{{ role }}</h4>
+        <h4>{{ username }}</h4>
+        <h4 class="role">{{ role }}</h4>
         <i>&#183;</i>
         <h4 :class="[{ 'text-light': isHovering }, 'secondary-text']">
           {{ converDate(createdAt) }}
@@ -18,18 +18,10 @@
       </div>
       <p>{{ body }}</p>
       <div class="interactions">
-        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']"
-          >Reply</span
-        >
-        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']"
-          >{{ replies }} Replies</span
-        >
-        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']"
-          >^ {{ upvotes }}</span
-        >
-        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']"
-          >^ {{ downvotes }}</span
-        >
+        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']">Reply</span>
+        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']">{{ replies }} Replies</span>
+        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']">^ {{ upvotes }}</span>
+        <span :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text']">^ {{ downvotes }}</span>
       </div>
     </div>
   </div>
@@ -57,7 +49,7 @@ export default {
       const commentDate = new Date(createdAt);
 
       const timeDifferenceInMinutes = Math.floor(
-        ((Date.now() - commentDate) / 1000 )/ 60
+        (Date.now() - commentDate) / 1000 / 60
       );
       if (timeDifferenceInMinutes < 60) {
         return `${timeDifferenceInMinutes} minutes ago`;
@@ -111,7 +103,7 @@ export default {
 .mr {
   margin-right: 1.25rem;
 }
-.tag {
+.role {
   background-color: #212529;
   border-radius: 2rem;
   padding: 0.125rem 0.5rem;
@@ -122,8 +114,8 @@ export default {
 .circle {
   width: 3rem;
   height: 3rem;
-  background: #ff7f00;
-  // #d9a967
+  background: #d9a967;
+  // #ff7f00
   border-radius: 50%;
 }
 .card-title {
