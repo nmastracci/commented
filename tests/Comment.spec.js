@@ -32,8 +32,8 @@ describe('Comment.vue', () => {
 
     expect(component.find('.card-title > h4').text()).toEqual('Brad');
     expect(component.find('.card-title .role').text()).toEqual('Author');
-    expect(component.find('#upvotes').text()).toEqual('^ 123');
-    expect(component.find('#downvotes').text()).toEqual('˅ 0');
+    expect(component.find('#upvotes').text()).toEqual('123');
+    expect(component.find('#downvotes').text()).toEqual('0');
   });
 
   it('removes the text-light class on hover', async () => {
@@ -75,12 +75,12 @@ describe('Comment.vue', () => {
     });
     const upvotes = component.element.querySelector('#upvotes');
 
-    expect(upvotes.textContent).toEqual('^ 123');
+    expect(upvotes.textContent).toEqual('123');
 
     component.find('#upvotes').trigger('click');
     await component.vm.$nextTick();
 
-    expect(upvotes.textContent).toEqual('^ 124');
+    expect(upvotes.textContent).toEqual('124');
   });
 
   describe('Date/time calculations', () => {

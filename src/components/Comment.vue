@@ -26,12 +26,12 @@
           id="upvotes"
           :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
           @click="upvotes += 1"
-        >^ {{ upvotes }}</span>
+        ><span class="chevron"></span>{{ upvotes }}</span>
         <span
           id="downvotes"
           :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
           @click="downvotes += 1"
-        >&#709; {{ downvotes }}</span>
+        ><span class="chevron down"></span>{{ downvotes }}</span>
       </div>
     </div>
   </div>
@@ -200,4 +200,20 @@ export default {
 .pointer {
   cursor: pointer;
 }
+.chevron::before {
+  border-style: solid;
+  border-width: 0.0625rem 0.0625rem 0 0;
+  content: '';
+  display: inline-block;
+  height: 0.45rem;
+  transform: rotate(-45deg);
+  vertical-align: middle;
+  width: 0.45rem;
+  margin-right: 0.25rem;
+}
+.down:before {
+	transform: rotate(135deg);
+  vertical-align: top;
+}
+
 </style>
