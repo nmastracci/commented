@@ -18,7 +18,7 @@
       :role-prop="comment.role"
       :photo-prop="comment.photo"
       :body-prop="comment.body"
-      :replies-prop-prop="comment.replies"
+      :replies-prop="comment.replies"
       :upvotes-prop="comment.upvotes"
       :downvotes-prop="comment.downvotes"
       :created-at-prop="comment.createdAt"
@@ -41,12 +41,12 @@ export default {
         id: 0,
         username: '',
         role: 'Author',
-        photo: false,
+        photo: null,
         body: '',
         replies: 0,
         upvotes: 0,
         downvotes: 0,
-        createdAt: Date.now()
+        createdAt: ''
       },
       comments: [
         {
@@ -59,7 +59,7 @@ export default {
           replies: 124,
           upvotes: 1000,
           downvotes: 10,
-          createdAt: 'Sat Mar 21 2020 17:40:02 GMT-0400'
+          createdAt: new Date('Sun Mar 22 2020 17:40:02 GMT-0400')
         },
         {
           id: 1,
@@ -71,7 +71,7 @@ export default {
           replies: 21,
           upvotes: 123,
           downvotes: 0,
-          createdAt: 'Sat Mar 21 2020 16:40:02 GMT-0400'
+          createdAt: new Date('Sat Mar 21 2020 16:40:02 GMT-0400')
         }
       ]
     };
@@ -80,6 +80,8 @@ export default {
     updateComments() {
       let newComment = { ...this.currentUser };
       newComment.id = this.comments.length;
+      newComment.createdAt = new Date(Date.now());
+      newComment.photo = 'photo1.webp';
       this.comments.unshift(newComment);
       return this.clearCuurrentUser();
     },

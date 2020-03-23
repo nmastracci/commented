@@ -31,7 +31,7 @@
           id="downvotes"
           :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
           @click="downvotes += 1"
-        >^ {{ downvotes }}</span>
+        >&#709; {{ downvotes }}</span>
       </div>
     </div>
   </div>
@@ -40,16 +40,40 @@
 <script>
 export default {
   name: 'Comment',
-  props: [
-    'usernameProp',
-    'roleProp',
-    'photoProp',
-    'bodyProp',
-    'repliesProp',
-    'upvotesProp',
-    'downvotesProp',
-    'createdAtProp'
-  ],
+  props: {
+      usernameProp: {
+        type: String,
+        required: true
+      },
+      roleProp: {
+        type: String,
+        required: true
+      },
+      photoProp: {
+        type: String,
+        required: true
+      },
+      bodyProp: {
+        type: String,
+        required: true
+      },
+      repliesProp: {
+        type: Number,
+        required: true
+      },
+      upvotesProp: {
+        type: Number,
+        required: true
+      },
+      downvotesProp: {
+        type: Number,
+        required: true
+      },
+      createdAtProp: {
+        type: Date,
+        required: true
+      }
+    },
   data: () => {
     return {
       isHovering: true,
@@ -64,19 +88,13 @@ export default {
     };
   },
   created() {
-    this.username = this.usernameProp
-    this.role = this.roleProp
-    this.photo = this.photoProp
-    this.body = this.bodyProp
-    this.replies = this.repliesProp
-    this.upvotes = this.upvotesProp
-    this.downvotes = this.downvotesProp
-    this.createdAt = this.createdAtProp
-  },
-  computed: {
-    hasPhoto() {
-      return this.photo
-    }
+    this.username = this.usernameProp;
+    this.role = this.roleProp;
+    this.photo = this.photoProp;
+    this.body = this.bodyProp;
+    this.upvotes = this.upvotesProp;
+    this.downvotes = this.downvotesProp;
+    this.createdAt = this.createdAtProp;
   },
   methods: {
     converDate: function(createdAt) {
@@ -95,6 +113,9 @@ export default {
         return `${Math.floor(timeDifferenceInMinutes / 60)} hours ago`;
       }
       return createdAt;
+    },
+    hasPhoto() {
+      return this.photo;
     }
   }
 };
