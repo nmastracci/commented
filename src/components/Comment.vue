@@ -107,8 +107,10 @@ export default {
         return `${timeDifferenceInMinutes} minutes ago`;
       }
       if (timeDifferenceInMinutes > 60) {
-        if (timeDifferenceInMinutes / 60 > 24) {
-          return 'more than a day ago';
+        const timeDifferenceInHours = Math.floor(timeDifferenceInMinutes / 60);
+        if (timeDifferenceInHours > 24) {
+          const timedifferenceInDays = Math.floor(timeDifferenceInHours/24);
+          return timeDifferenceInHours > 24 ? 'Yesterday' : `${timedifferenceInDays} days ago`;
         }
         return `${Math.floor(timeDifferenceInMinutes / 60)} hours ago`;
       }
