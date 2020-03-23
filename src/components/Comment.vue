@@ -5,9 +5,8 @@
     class="comment"
   >
     <div class="user">
-      <div class="circle">
-        <img v-if="hasPhoto" :src="'/img/'+photo" alt="profile picture of the user">
-      </div>
+      <img v-if="hasPhoto" class="photo" :src="'/img/'+photo" alt="profile picture of the user">
+      <div v-else class="circle"></div>
     </div>
     <div>
       <div class="card-title">
@@ -176,13 +175,13 @@ export default {
   background: #d9a967;
   // #ff7f00
   border-radius: 50%;
-
-  img {
+  margin-top: 0.5rem;
+}
+.photo {
     @extend .circle;
     background:none;
     object-fit: cover;
   }
-}
 .card-title {
   @extend .interactions;
   &:first-child {
