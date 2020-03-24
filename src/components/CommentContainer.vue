@@ -5,17 +5,17 @@
         <div class="card-body-title">
           <h4>Name:</h4>
           <input
+            v-model="currentUser.username"
             placeholder="Enter Your name"
             type="text"
-            v-model="currentUser.username"
           />
         </div>
         <textarea
+          v-model="currentUser.body"
           placeholder="Have a comment?"
           type="text"
-          v-model="currentUser.body"
-        ></textarea>
-        <button v-on:click="updateComments">Post Comment</button>
+        />
+        <button @click="updateComments">Post Comment</button>
       </div>
     </div>
 
@@ -86,24 +86,33 @@ export default {
   },
   methods: {
     updateComments() {
-      let newComment = { ...this.currentUser };
-      newComment.id = this.comments.length;
-      newComment.createdAt = new Date(Date.now());
-      newComment.photo = 'photo1.webp';
+      let newComment = {
+        id: this.comments.length,
+        username: this.currentUser.username,
+        role: this.currentUser.role,
+        photo: 'photo1.webp',
+        body: this.currentUser.body,
+        replies: 0,
+        upvotes: 0,
+        downvotes: 0,
+        createdAt: new Date(Date.now())
+      };
       this.comments.unshift(newComment);
-      return this.clearCuurrentUser();
+      return this.clearCurrentUser();
     },
-    clearCuurrentUser() {
+    clearCurrentUser() {
       this.currentUser = {
         id: 0,
         username: '',
         role: 'Author',
+        photo: '',
         body: '',
         replies: 0,
         upvotes: 0,
         downvotes: 0,
-        createdAt: Date.now()
+        createdAt: ''
       };
+      return 'complete';
     }
   }
 };

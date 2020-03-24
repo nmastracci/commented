@@ -1,8 +1,8 @@
 <template>
   <div
+    class="comment"
     @mouseover="isHovering = false"
     @mouseout="isHovering = true"
-    class="comment"
   >
     <div class="user">
       <img
@@ -28,18 +28,33 @@
       <p>{{ body }}</p>
       <div class="interactions">
         <span
-          :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
+          :class="[
+            { 'text-light': isHovering },
+            'mr',
+            'secondary-text',
+            'pointer'
+          ]"
         >
           Reply
         </span>
         <span
-          :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
+          :class="[
+            { 'text-light': isHovering },
+            'mr',
+            'secondary-text',
+            'pointer'
+          ]"
         >
           {{ replies }} Replies
         </span>
         <span
           id="upvotes"
-          :class="[{ 'text-light': isHovering },'mr','secondary-text','pointer']"
+          :class="[
+            { 'text-light': isHovering },
+            'mr',
+            'secondary-text',
+            'pointer'
+          ]"
           @click="upvotes += 1"
         >
           <span class="chevron"></span>
@@ -47,7 +62,12 @@
         </span>
         <span
           id="downvotes"
-          :class="[{ 'text-light': isHovering }, 'mr', 'secondary-text', 'pointer']"
+          :class="[
+            { 'text-light': isHovering },
+            'mr',
+            'secondary-text',
+            'pointer'
+          ]"
           @click="downvotes += 1"
         >
           <span class="chevron down"></span>
